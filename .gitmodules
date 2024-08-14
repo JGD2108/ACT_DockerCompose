@@ -1,0 +1,6 @@
+[submodule "EA_Grafty"]
+	path = EA_Grafty
+	url = https://github.com/proyectosingenieriauninorte/EA_Grafty.git
+[submodule "Dataflow"]
+	path = Dataflow
+	url = https://github.com/proyectosingenieriauninorte/Dataflow.git
