@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  proxy:
+    build:
+      context: ./nginx
+      dockerfile: dockerfile
+    container_name: proxy
+    ports:
+      - 80:80
+  app1: 
+    build:
+      context: ./EA_Grafty
+      dockerfile: dockerfile
+    container_name: app1
+    ports:
+      - "8000:8000"
