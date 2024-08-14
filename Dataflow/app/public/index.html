@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Generador de Datos Sintéticos - DataFlow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.1.1/chartjs-plugin-zoom.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+      .chart-container, .pairplot-container {
+        width: 80%;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <header>
+        <h1>DataFlow</h1>
+      </header>
+      <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#configSection">Configuración</a></li>
+        <li><a href="#dataSection">Datos Generados</a></li>
+      </ul>
+    </nav>
+
+    <section id="home">
+      <div class="content">
+        <h1 class="main-title">Bienvenido a <span class="dataflow-text">DataFlow</span></h1>
+        <h2 class="sub-title">¿Necesitas datos personalizados de sensores? DataFlow te ofrece una forma rápida y fácil de generar datasets de temperatura, humedad, presión, y más. ¡Elige tu patrón de variación y obtén los datos que necesitas al instante!</h2>
+      </div>
+    </section>
+
+    <section id="configSection">
+      <form id="dataConfigForm">
+        <h2>Construye tu Dataset</h2>
+        <div class="form-section">
+          <div class="config-global">
+            <label for="totalRows">Total de filas:</label>
+            <input type="number" id="totalRows" name="totalRows" min="1" required />
+            <br />
+            <label for="dataFrequency">Frecuencia de generación de datos:</label>
+            <select id="dataFrequency" name="dataFrequency" required>
+              <option value="seconds">Segundos</option>
+              <option value="minutes">Minutos</option>
+              <option value="hours">Horas</option>
+            </select>
+            <br />
+            <label for="startDate">Fecha de inicio:</label>
+            <input type="date" id="startDate" name="startDate" required />
+          </div>
+          <div class="config-columns">
+            <h3>Configuración de Columnas</h3>
+            <br />
+            <div id="columnsContainer">
+              <div class="columnConfig">
+                <label for="columnName">Nombre de la columna:</label>
+                <input type="text" name="columnName" required />
+                <br />
+                <label for="dataType">Tipo de dato:</label>
+                <select name="dataType" required>
+                  <option value="temperature">Temperatura (°C)</option>
+                  <option value="humidity">Humedad (%)</option>
+                  <option value="pressure">Presión (hPa)</option>
+                  <option value="power">Potencia (W)</option>
+                  <option value="current">Corriente (A)</option>
+                  <option value="voltage">Voltaje (V)</option>
+                </select>
+                <br />
+                <div class="numericConfig">
+                  <label for="minValue">Valor mínimo:</label>
+                  <input type="number" name="minValue" />
+                  <br />
+                  <label for="maxValue">Valor máximo:</label>
+                  <input type="number" name="maxValue" />
+                  <br />
+                </div>
+                <label for="variationPattern">Patrón de variación:</label>
+                <select name="variationPattern" required>
+                  <option value="constant">Constante</option>
+                  <option value="linear">Lineal</option>
+                  <option value="sinusoidal">Senoidal</option>
+                  <option value="random">Aleatorio</option>
+                </select>
+                <br />
+                <button type="button" class="removeColumnBtn">Eliminar Columna</button>
+              </div>
+            </div>
+            <button type="button" id="addColumnBtn">Agregar Columna</button>
+          </div>
+        </div>
+        <button type="submit">Generar Dataset</button>
+      </form>
+    </section>
+
+    <section id="dataSection">
+      <h2>Datos Generados</h2>
+      <div class="card">
+        <table id="dataTable">
+          <!-- La tabla se llenará con los datos generados -->
+        </table>
+        <button id="exportCsvBtn" disabled>Exportar a CSV</button>
+      </div>
+    </section>
+
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
+    <div class="pairplot-container">
+      <div id="pairPlot"></div>
+    </div>
+
+    <input type="file" id="csvFileInput" accept=".csv">
+    <button id="loadDataButton">Cargar datos</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
