@@ -69,5 +69,5 @@ app.delete('/api/sensors/data/:id', async (req, res) => {
 });
 
 app.listen(8001, () => {
-    console.log('Server is running on http://localhost:3000');
+    console.log('Server is running on http://localhost:8001');
 });

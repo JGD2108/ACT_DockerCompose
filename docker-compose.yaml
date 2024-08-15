@@ -1,17 +1,16 @@
 version: '3.8'
-
 services:
   dataflow:
-    image: prueba2-dataflow
+    build: ./Dataflow
     ports:
-      - 8000:8000
+      - 8001:8001  # Map container's port 8001 to host's port 8001
     networks:
       - web
 
   ea_grafty:
-    image: prueba2-ea_grafty
+    build: ./EA_Grafty
     ports:
-      - 8001:8001
+      - 8000:8000  # Map container's port 8000 to host's port 8000
     networks:
       - web
 
